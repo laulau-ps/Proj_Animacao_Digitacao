@@ -1,0 +1,96 @@
+/*IMPORTAÇÃO DA FONTE*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*RESET CSS*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*ESTILO DO CORPO*/
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #3a065f;
+}
+
+/*CONTAINER PRINCIPAL*/
+.wrapper {
+
+    /*organiza os elementos lado a lado*/
+    display: inline-flex;
+}
+
+/*ESTILO TEXTO ESTÁTICO*/
+.wrapper .texto-estatico {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 400;
+}
+
+/*ESTILO TEXTO ANIMADO*/
+.wrapper .texto-animado {
+    margin-left: 15px;
+    line-height: 80px;
+    height: 90px;
+    line-height: 90px;
+
+    /*serve para “esconder” o texto que vai deslizar para cima*/
+    overflow: hidden;
+}
+
+/*ITENS DA ANIMAÇÃO (CADA PALAVRA ANIMADA)*/
+.texto-animado li {
+    color: #a50b93;
+    list-style: none;
+    font-size: 60px;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+
+    /*animation: slide 6s steps(4) infinite; → faz o texto “subir” de 90px em 90px, mostrando cada palavra
+
+    steps(4) → divide a animação em 4 etapas (ou seja, 4 palavras)*/
+    animation: slide 6s steps(4) infinite;
+}
+
+/*CONFIGURAÇÃO DA ANIMAÇÃO QUE FAZ O TEXTO SUBIR*/
+@keyframes slide {
+    100% {
+        top: -360px;
+    }
+}
+
+/*EFEITO DE DIGITAÇÃO:*/
+.texto-animado li span {
+    position: relative;
+}
+
+/*cria uma “barra” que passa sobre o texto, simulando um cursor de digitação*/
+.texto-animado li span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    /*pinta a área atrás, “apagando” o texto conforme o cursor passa*/
+    background-color: #3a065f;
+
+    border-left: 2px solid #a50b93;
+    animation: typing 1.5s steps(14) infinite;
+}
+
+/*ANIMAÇÃO DO CURSOR*/
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+    /*Move o ::after da esquerda até o fim do texto (left: 100%)
+    O margin dá um pequeno ajuste para o efeito de digitação ficar mais natural*/
+}
